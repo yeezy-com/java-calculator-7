@@ -1,6 +1,7 @@
 package calculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,5 +42,14 @@ public class SplitterTest {
         String[] expected = input.split(":");
         assertThat(output).hasSize(3);
         assertThat(output).contains(expected);
+    }
+
+    @Test
+    void 쉼표나_콜론이_아닌_구분자는_구분할_수_없다() {
+        Splitter splitter = new Splitter();
+        String input = "1.3.2";
+
+        assertThatThrownBy(() -> splitter.split(input))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 }
