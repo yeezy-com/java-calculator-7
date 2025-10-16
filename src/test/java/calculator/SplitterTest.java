@@ -42,4 +42,13 @@ public class SplitterTest {
         assertThatThrownBy(() -> splitter.split(input))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 숫자_하나만_입력할_수_없다() {
+        var spliter = new Splitter();
+        var input = "1";
+
+        assertThatThrownBy(() -> spliter.split(input))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }
