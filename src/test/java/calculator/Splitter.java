@@ -6,12 +6,15 @@ import java.util.List;
 public class Splitter {
 
     public String[] split(final String input) {
+        validateContainsColonOrComma(input);
+        List<String> strings = splitOfColonAndComma(input);
+        return getArrayFrom(strings);
+    }
+
+    private void validateContainsColonOrComma(String input) {
         if (!(input.contains(",") || input.contains(":"))) {
             throw new IllegalArgumentException();
         }
-        List<String> strings = splitOfColonAndComma(input);
-        String[] ans = getArrayFrom(strings);
-        return ans;
     }
 
     private String[] getArrayFrom(List<String> strings) {
