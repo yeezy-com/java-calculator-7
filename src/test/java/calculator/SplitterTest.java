@@ -19,4 +19,16 @@ public class SplitterTest {
         assertThat(output).hasSize(3);
         assertThat(output).contains(expected);
     }
+
+    @Test
+    void 쉼표로_된_문자열을_구분할_수_있다2() {
+        Splitter splitter = new Splitter();
+        String input = "1,2,3,4";
+
+        var output = splitter.split(input);
+
+        String[] expected = input.split(",");
+        assertThat(output).hasSize(4);
+        assertThat(output).contains(expected);
+    }
 }
