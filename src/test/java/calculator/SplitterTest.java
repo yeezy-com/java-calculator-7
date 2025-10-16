@@ -1,8 +1,7 @@
 package calculator;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 // 쉼표(,), 콜론(:)을 구분자로 가지는 문자열을 분리할 수 있다.
