@@ -6,13 +6,17 @@ import java.util.List;
 public class Splitter {
 
     public String[] split(final String input) {
-        if (input.startsWith(":") || input.startsWith(",")) {
-            throw new IllegalArgumentException("구분자로 시작할 수 없습니다.");
-        }
+        validateIsNotStartWithDelimiter(input);
         validateContainsColonOrComma(input);
         validateOnlyUsingColonOrComma(input);
         List<String> strings = splitOfColonAndComma(input);
         return getArrayFrom(strings);
+    }
+
+    private void validateIsNotStartWithDelimiter(String input) {
+        if (input.startsWith(":") || input.startsWith(",")) {
+            throw new IllegalArgumentException("구분자로 시작할 수 없습니다.");
+        }
     }
 
     private void validateOnlyUsingColonOrComma(String input) {
