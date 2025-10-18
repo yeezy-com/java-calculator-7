@@ -1,8 +1,10 @@
 package calculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -26,5 +28,15 @@ public class CalculatorTest {
             Arguments.of("4,1", 5),
             Arguments.of("1,2,3:4:5", 15)
         );
+    }
+
+    @Test
+    void 숫자가_아닌_값이_있으면_예외가_발생한다() {
+        final var calculator = new Calculator(new Splitter());
+        final var input = "4:5:f";
+
+        assertThatThrownBy(() -> calculator.sum(input))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("구분자와 숫자로 이루어진 문자열이어야 합니다.");
     }
 }
