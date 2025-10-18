@@ -6,12 +6,36 @@ import java.util.List;
 public class Splitter {
 
     public String[] split(final String input) {
+        validateInputFormat(input);
+        List<String> strings = splitOfColonAndComma(input);
+        return getArrayFrom(strings);
+    }
+
+    private String[] getArrayFrom(List<String> strings) {
+        String[] ans = new String[strings.size()];
+        for (int i = 0; i < strings.size(); i++) {
+            ans[i] = strings.get(i);
+        }
+        return ans;
+    }
+
+    private List<String> splitOfColonAndComma(String input) {
+        List<String> strings = new ArrayList<>();
+
+        String[] split = input.split(",");
+        for (String s : split) {
+            for (String tmp : s.split(":")) {
+                strings.add(tmp);
+            }
+        }
+        return strings;
+    }
+
+    private void validateInputFormat(String input) {
         validateIsNotContinuousDelimiter(input);
         validateIsNotStartWithDelimiter(input);
         validateContainsColonOrComma(input);
         validateOnlyUsingColonOrComma(input);
-        List<String> strings = splitOfColonAndComma(input);
-        return getArrayFrom(strings);
     }
 
     private void validateIsNotContinuousDelimiter(String input) {
@@ -36,25 +60,5 @@ public class Splitter {
         if (!(input.contains(",") || input.contains(":"))) {
             throw new IllegalArgumentException("문자열에 구분자가 포함되어야 합니다.");
         }
-    }
-
-    private String[] getArrayFrom(List<String> strings) {
-        String[] ans = new String[strings.size()];
-        for (int i = 0; i < strings.size(); i++) {
-            ans[i] = strings.get(i);
-        }
-        return ans;
-    }
-
-    private List<String> splitOfColonAndComma(String input) {
-        List<String> strings = new ArrayList<>();
-
-        String[] split = input.split(",");
-        for (String s : split) {
-            for (String tmp : s.split(":")) {
-                strings.add(tmp);
-            }
-        }
-        return strings;
     }
 }
