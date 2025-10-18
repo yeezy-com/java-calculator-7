@@ -2,27 +2,29 @@ package calculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Test;
+import java.util.stream.Stream;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class CalculatorTest {
 
-    @Test
-    void 구분한_문자열의_합을_반환한다() {
+    @ParameterizedTest
+    @MethodSource(value = "sumOfStrings")
+    void 구분한_문자열의_합을_반환한다(final String input, final int ans) {
         var calculator = new Calculator(new Splitter());
-        var input = "4:3:2";
 
         var sum = calculator.sum(input);
 
-        assertThat(sum).isEqualTo(9);
+        assertThat(sum).isEqualTo(ans);
     }
 
-    @Test
-    void 구분한_문자열의_합을_반환한다2() {
-        var calculator = new Calculator(new Splitter());
-        var input = "4,4,2,2";
-
-        var sum = calculator.sum(input);
-
-        assertThat(sum).isEqualTo(12);
+    private static Stream<Arguments> sumOfStrings() {
+        return Stream.of(
+            Arguments.of("4:3:2", 9),
+            Arguments.of("4,4,2,2", 12),
+            Arguments.of("4,1", 5),
+            Arguments.of("1,2,3:4:5", 15)
+        );
     }
 }
