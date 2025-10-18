@@ -11,14 +11,6 @@ public class Splitter {
         return getArrayFrom(strings);
     }
 
-    private String[] getArrayFrom(List<String> strings) {
-        String[] ans = new String[strings.size()];
-        for (int i = 0; i < strings.size(); i++) {
-            ans[i] = strings.get(i);
-        }
-        return ans;
-    }
-
     private List<String> splitToDelimiter(String input) {
         List<String> strings = new ArrayList<>();
 
@@ -60,5 +52,13 @@ public class Splitter {
         if (!(input.contains(",") || input.contains(":"))) {
             throw new IllegalArgumentException("문자열에 구분자가 포함되어야 합니다.");
         }
+    }
+
+    private String[] getArrayFrom(List<String> strings) {
+        String[] ans = new String[strings.size()];
+        for (int i = 0; i < strings.size(); i++) {
+            ans[i] = strings.get(i);
+        }
+        return ans;
     }
 }
