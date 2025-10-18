@@ -69,6 +69,7 @@ public class SplitterTest {
         final var input = "3::3";
 
         assertThatThrownBy(() -> splitter.split(input))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("구분자는 연속해서 올 수 없습니다.");
     }
 }

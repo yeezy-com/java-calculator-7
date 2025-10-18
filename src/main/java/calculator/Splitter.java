@@ -16,7 +16,7 @@ public class Splitter {
 
     private void validateIsNotContinuousDelimiter(String input) {
         if (input.matches(".*[,:]{2,}.*")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("구분자는 연속해서 올 수 없습니다.");
         }
     }
 
