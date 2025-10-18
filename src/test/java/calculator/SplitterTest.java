@@ -49,6 +49,7 @@ public class SplitterTest {
         final var splitter = new Splitter();
 
         assertThatThrownBy(() -> splitter.split(input))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("문자열에 구분자가 포함되어야 합니다.");
     }
 }

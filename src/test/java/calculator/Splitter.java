@@ -13,7 +13,7 @@ public class Splitter {
 
     private void validateContainsColonOrComma(String input) {
         if (!(input.contains(",") || input.contains(":"))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("문자열에 구분자가 포함되어야 합니다.");
         }
     }
 
