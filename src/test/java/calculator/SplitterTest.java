@@ -53,10 +53,10 @@ public class SplitterTest {
             .hasMessage("문자열에 구분자가 포함되어야 합니다.");
     }
 
-    @Test
-    void 구분자는_맨_앞에_올_수_없다() {
+    @ParameterizedTest
+    @ValueSource(strings = {":3", ",4"})
+    void 구분자는_맨_앞에_올_수_없다(final String input) {
         final var splitter = new Splitter();
-        final var input = ":3";
 
         assertThatThrownBy(() -> splitter.split(input))
             .isInstanceOf(IllegalArgumentException.class)
