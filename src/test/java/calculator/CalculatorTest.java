@@ -12,9 +12,9 @@ public class CalculatorTest {
     @ParameterizedTest
     @MethodSource(value = "sumOfStrings")
     void 구분한_문자열의_합을_반환한다(final String input, final int ans) {
-        var calculator = new Calculator(new Splitter());
+        final var calculator = new Calculator(new Splitter());
 
-        var sum = calculator.sum(input);
+        final var sum = calculator.sum(input);
 
         assertThat(sum).isEqualTo(ans);
     }
