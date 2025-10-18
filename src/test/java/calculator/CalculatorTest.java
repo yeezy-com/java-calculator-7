@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.Stream;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -41,10 +40,10 @@ public class CalculatorTest {
             .hasMessage("구분자와 숫자로 이루어진 문자열이어야 합니다.");
     }
 
-    @Test
-    void 양수가_아닌_값에_대해서_예외가_발생한다() {
+    @ParameterizedTest
+    @ValueSource(strings = {"-1:2:3", "1,3,-4", "3:0:4", "0:-1:-2"})
+    void 양수가_아닌_값에_대해서_예외가_발생한다(final String input) {
         final var calculator = new Calculator(new Splitter());
-        final var input = "-1:2:3";
 
         assertThatThrownBy(() -> calculator.sum(input))
             .isInstanceOf(IllegalArgumentException.class)
