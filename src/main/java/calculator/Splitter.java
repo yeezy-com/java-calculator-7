@@ -6,6 +6,9 @@ import java.util.List;
 public class Splitter {
 
     public String[] split(final String input) {
+        if (input.startsWith(":") || input.startsWith(",")) {
+            throw new IllegalArgumentException();
+        }
         validateContainsColonOrComma(input);
         validateOnlyUsingColonOrComma(input);
         List<String> strings = splitOfColonAndComma(input);
