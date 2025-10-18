@@ -22,10 +22,10 @@ public class Splitter {
     private List<String> splitOfColonAndComma(String input) {
         List<String> strings = new ArrayList<>();
 
-        String[] split = input.split(",");
-        for (String s : split) {
-            for (String tmp : s.split(":")) {
-                strings.add(tmp);
+        String[] splittedInput = input.split(",");
+        for (String splittedPart : splittedInput) {
+            for (String part : splittedPart.split(":")) {
+                strings.add(part);
             }
         }
         return strings;
