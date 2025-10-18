@@ -15,13 +15,13 @@ public class Splitter {
     }
 
     private void validateIsNotContinuousDelimiter(String input) {
-        if (input.matches(".*[,:]{2,}.*")) {
+        if (input.matches(".*[^a-zA-Z0-9]{2,}.*")) {
             throw new IllegalArgumentException("구분자는 연속해서 올 수 없습니다.");
         }
     }
 
     private void validateIsNotStartWithDelimiter(String input) {
-        if (input.startsWith(":") || input.startsWith(",")) {
+        if (input.matches("^[^a-zA-Z0-9].*")) {
             throw new IllegalArgumentException("구분자로 시작할 수 없습니다.");
         }
     }

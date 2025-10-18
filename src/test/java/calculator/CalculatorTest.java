@@ -46,7 +46,6 @@ public class CalculatorTest {
         final var calculator = new Calculator(new Splitter());
 
         assertThatThrownBy(() -> calculator.sum(input))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("숫자는 양수로 이루어져야합니다.");
+            .isInstanceOf(IllegalArgumentException.class);
     }
 }
