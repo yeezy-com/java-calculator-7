@@ -31,7 +31,7 @@ public class CalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"4:5:f", "f:f:d", "fas:fda:@3"})
+    @ValueSource(strings = {"4:5:f", "f:f:d", "fas:fda:3"})
     void 숫자가_아닌_값이_있으면_예외가_발생한다(final String input) {
         final var calculator = new Calculator(new Splitter());
 
