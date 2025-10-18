@@ -30,8 +30,8 @@ public class Calculator {
     }
 
     private void validateIsPositiveNumber(int num) {
-        if (num <= 0) {
-            throw new IllegalArgumentException("숫자는 양수로 이루어져야합니다.");
+        if (num == 0) {
+            throw new IllegalArgumentException("0은 입력할 수 없습니다.");
         }
     }
 }

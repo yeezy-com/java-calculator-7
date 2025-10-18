@@ -47,6 +47,6 @@ public class CalculatorTest {
 
         assertThatThrownBy(() -> calculator.sum(input))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("숫자는 양수로 이루어져야합니다.");
+            .hasMessage("0은 입력할 수 없습니다.");
     }
 }
