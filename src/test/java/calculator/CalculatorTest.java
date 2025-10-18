@@ -41,11 +41,12 @@ public class CalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"-1:2:3", "1,3,-4", "3:0:4", "0:-1:-2"})
-    void 양수가_아닌_값에_대해서_예외가_발생한다(final String input) {
+    @ValueSource(strings = {"0:2:3", "1,0,4", "3:0:4", "0:0:0"})
+    void 숫자0은_예외가_발생한다(final String input) {
         final var calculator = new Calculator(new Splitter());
 
         assertThatThrownBy(() -> calculator.sum(input))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("숫자는 양수로 이루어져야합니다.");
     }
 }
