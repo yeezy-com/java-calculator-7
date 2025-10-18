@@ -7,7 +7,7 @@ public class Splitter {
 
     public String[] split(final String input) {
         validateInputFormat(input);
-        List<String> strings = splitOfColonAndComma(input);
+        List<String> strings = splitToDelimiter(input);
         return getArrayFrom(strings);
     }
 
@@ -19,7 +19,7 @@ public class Splitter {
         return ans;
     }
 
-    private List<String> splitOfColonAndComma(String input) {
+    private List<String> splitToDelimiter(String input) {
         List<String> strings = new ArrayList<>();
 
         String[] splittedInput = input.split(",");
@@ -34,7 +34,7 @@ public class Splitter {
     private void validateInputFormat(String input) {
         validateIsNotContinuousDelimiter(input);
         validateIsNotStartWithDelimiter(input);
-        validateContainsColonOrComma(input);
+        validateContainsDelimiter(input);
         validateOnlyUsingColonOrComma(input);
     }
 
@@ -56,7 +56,7 @@ public class Splitter {
         }
     }
 
-    private void validateContainsColonOrComma(String input) {
+    private void validateContainsDelimiter(String input) {
         if (!(input.contains(",") || input.contains(":"))) {
             throw new IllegalArgumentException("문자열에 구분자가 포함되어야 합니다.");
         }
