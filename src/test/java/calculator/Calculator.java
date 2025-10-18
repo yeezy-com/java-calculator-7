@@ -13,7 +13,11 @@ public class Calculator {
 
         String[] rawValues = splitter.split(input);
         for (String rawValue : rawValues) {
-            num += parseToInt(rawValue);
+            int tmpNum = parseToInt(rawValue);
+            if (tmpNum <= 0) {
+                throw new IllegalArgumentException("숫자는 양수로 이루어져야합니다.");
+            }
+            num += tmpNum;
         }
 
         return num;
