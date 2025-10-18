@@ -59,6 +59,7 @@ public class SplitterTest {
         final var input = ":3";
 
         assertThatThrownBy(() -> splitter.split(input))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("구분자로 시작할 수 없습니다.");
     }
 }

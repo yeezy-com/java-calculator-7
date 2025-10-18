@@ -7,7 +7,7 @@ public class Splitter {
 
     public String[] split(final String input) {
         if (input.startsWith(":") || input.startsWith(",")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("구분자로 시작할 수 없습니다.");
         }
         validateContainsColonOrComma(input);
         validateOnlyUsingColonOrComma(input);
