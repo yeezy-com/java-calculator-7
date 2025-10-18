@@ -13,7 +13,11 @@ public class Calculator {
 
         String[] split = splitter.split(input);
         for (String tmp : split) {
-            num += Integer.parseInt(tmp);
+            try {
+                num += Integer.parseInt(tmp);
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("구분자와 숫자로 이루어진 문자열이어야 합니다.");
+            }
         }
 
         return num;
