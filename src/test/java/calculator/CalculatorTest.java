@@ -4,10 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.Stream;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CalculatorTest {
 
@@ -30,10 +30,10 @@ public class CalculatorTest {
         );
     }
 
-    @Test
-    void 숫자가_아닌_값이_있으면_예외가_발생한다() {
+    @ParameterizedTest
+    @ValueSource(strings = {"4:5:f", "f:f:d", "fas:fda:@3"})
+    void 숫자가_아닌_값이_있으면_예외가_발생한다(final String input) {
         final var calculator = new Calculator(new Splitter());
-        final var input = "4:5:f";
 
         assertThatThrownBy(() -> calculator.sum(input))
             .isInstanceOf(IllegalArgumentException.class)
