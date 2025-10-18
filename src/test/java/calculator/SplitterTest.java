@@ -43,6 +43,15 @@ public class SplitterTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 쉼표나_콜론이_아닌_구분자는_구분할_수_없다2() {
+        final var splitter = new Splitter();
+        final var input = "1.3:2";
+
+        assertThatThrownBy(() -> splitter.split(input))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @ParameterizedTest
     @ValueSource(strings = {"3", "45", "23", "fd"})
     void 구분자가_없는_문자열에_대해서_예외를_발생한다(final String input) {
