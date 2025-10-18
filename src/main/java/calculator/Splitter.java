@@ -7,11 +7,15 @@ public class Splitter {
 
     public String[] split(final String input) {
         validateContainsColonOrComma(input);
+        validateOnlyUsingColonOrComma(input);
+        List<String> strings = splitOfColonAndComma(input);
+        return getArrayFrom(strings);
+    }
+
+    private void validateOnlyUsingColonOrComma(String input) {
         if (!input.matches("[0-9a-zA-Z-,:]+")) {
             throw new IllegalArgumentException("쉼표(,)와 콜론(:)만 구분자로 사용할 수 있습니다.");
         }
-        List<String> strings = splitOfColonAndComma(input);
-        return getArrayFrom(strings);
     }
 
     private void validateContainsColonOrComma(String input) {
