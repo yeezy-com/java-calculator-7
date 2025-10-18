@@ -14,9 +14,7 @@ public class Calculator {
         String[] rawValues = splitter.split(input);
         for (String rawValue : rawValues) {
             int tmpNum = parseToInt(rawValue);
-            if (tmpNum <= 0) {
-                throw new IllegalArgumentException("숫자는 양수로 이루어져야합니다.");
-            }
+            validateIsPositiveNumber(tmpNum);
             num += tmpNum;
         }
 
@@ -28,6 +26,12 @@ public class Calculator {
             return Integer.parseInt(rawValue);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("구분자와 숫자로 이루어진 문자열이어야 합니다.");
+        }
+    }
+
+    private void validateIsPositiveNumber(int tmpNum) {
+        if (tmpNum <= 0) {
+            throw new IllegalArgumentException("숫자는 양수로 이루어져야합니다.");
         }
     }
 }
