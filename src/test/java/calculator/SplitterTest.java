@@ -62,4 +62,13 @@ public class SplitterTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("구분자로 시작할 수 없습니다.");
     }
+
+    @Test
+    void 구분자는_한_개_이상_연속할_수_없다() {
+        final var splitter = new Splitter();
+        final var input = "3::3";
+
+        assertThatThrownBy(() -> splitter.split(input))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }
