@@ -43,10 +43,10 @@ public class SplitterTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 숫자_하나만_입력할_수_없다() {
+    @ParameterizedTest
+    @ValueSource(strings = {"3", "45", "23", "fd"})
+    void 구분자가_없는_문자열에_대해서_예외를_발생한다(final String input) {
         var spliter = new Splitter();
-        var input = "1";
 
         assertThatThrownBy(() -> spliter.split(input))
             .isInstanceOf(IllegalArgumentException.class);
