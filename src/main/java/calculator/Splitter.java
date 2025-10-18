@@ -6,14 +6,18 @@ import java.util.List;
 public class Splitter {
 
     public String[] split(final String input) {
-        if (input.matches(".*[,:]{2,}.*")) {
-            throw new IllegalArgumentException();
-        }
+        validateIsNotContinuousDelimiter(input);
         validateIsNotStartWithDelimiter(input);
         validateContainsColonOrComma(input);
         validateOnlyUsingColonOrComma(input);
         List<String> strings = splitOfColonAndComma(input);
         return getArrayFrom(strings);
+    }
+
+    private void validateIsNotContinuousDelimiter(String input) {
+        if (input.matches(".*[,:]{2,}.*")) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private void validateIsNotStartWithDelimiter(String input) {
