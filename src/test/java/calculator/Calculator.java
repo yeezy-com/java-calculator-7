@@ -9,16 +9,16 @@ public class Calculator {
     }
 
     public int sum(final String input) {
-        int num = 0;
+        int sum = 0;
 
         String[] rawValues = splitter.split(input);
         for (String rawValue : rawValues) {
-            int tmpNum = parseToInt(rawValue);
-            validateIsPositiveNumber(tmpNum);
-            num += tmpNum;
+            int num = parseToInt(rawValue);
+            validateIsPositiveNumber(num);
+            sum += num;
         }
 
-        return num;
+        return sum;
     }
 
     private int parseToInt(final String rawValue) {
@@ -29,8 +29,8 @@ public class Calculator {
         }
     }
 
-    private void validateIsPositiveNumber(int tmpNum) {
-        if (tmpNum <= 0) {
+    private void validateIsPositiveNumber(int num) {
+        if (num <= 0) {
             throw new IllegalArgumentException("숫자는 양수로 이루어져야합니다.");
         }
     }
