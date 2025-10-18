@@ -34,23 +34,13 @@ public class SplitterTest {
         assertThat(output).contains(expected);
     }
 
-    @Test
-    void 쉼표나_콜론이_아닌_구분자는_구분할_수_없다() {
+    @ParameterizedTest
+    @ValueSource(strings = {"1.3.2", "1.3:2", "1,3.2"})
+    void 쉼표나_콜론이_아닌_구분자는_구분할_수_없다(final String input) {
         final var splitter = new Splitter();
-        final var input = "1.3.2";
 
         assertThatThrownBy(() -> splitter.split(input))
             .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 쉼표나_콜론이_아닌_구분자는_구분할_수_없다2() {
-        final var splitter = new Splitter();
-        final var input = "1.3:2";
-
-        assertThatThrownBy(() -> splitter.split(input))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("쉼표(,)와 콜론(:)만 구분자로 사용할 수 있습니다.");
     }
 
     @ParameterizedTest
