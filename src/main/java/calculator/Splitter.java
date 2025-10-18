@@ -6,6 +6,9 @@ import java.util.List;
 public class Splitter {
 
     public String[] split(final String input) {
+        if (input.matches(".*[,:]{2,}.*")) {
+            throw new IllegalArgumentException();
+        }
         validateIsNotStartWithDelimiter(input);
         validateContainsColonOrComma(input);
         validateOnlyUsingColonOrComma(input);
