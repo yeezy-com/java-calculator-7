@@ -51,7 +51,7 @@ public class Splitter {
     }
 
     private void validateOnlyUsingColonOrComma(String input) {
-        if (!input.matches("[0-9a-zA-Z-,:]+")) {
+        if (!input.matches("[0-9a-zA-Z,:]+")) {
             throw new IllegalArgumentException("쉼표(,)와 콜론(:)만 구분자로 사용할 수 있습니다.");
         }
     }
