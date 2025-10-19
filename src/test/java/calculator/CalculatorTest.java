@@ -37,7 +37,7 @@ public class CalculatorTest {
 
         assertThatThrownBy(() -> calculator.sum(input))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("구분자와 숫자로 이루어진 문자열이어야 합니다.");
+            .hasMessage("숫자만 계산할 수 있습니다.");
     }
 
     @ParameterizedTest

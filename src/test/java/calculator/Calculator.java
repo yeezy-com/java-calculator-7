@@ -28,7 +28,7 @@ public class Calculator {
                 continue;
             }
 
-            throw new IllegalArgumentException("구분자와 숫자로 이루어진 문자열이어야 합니다.");
+            throw new IllegalArgumentException("숫자만 계산할 수 있습니다.");
         }
 
         return sum;
