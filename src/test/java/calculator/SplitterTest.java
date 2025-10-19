@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-// 쉼표(,), 콜론(:)을 구분자로 가지는 문자열을 분리할 수 있다.
 public class SplitterTest {
 
     @ParameterizedTest
