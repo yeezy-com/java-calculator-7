@@ -21,7 +21,7 @@ public class Calculator {
                     }
                     validateIsPositiveNumber(num);
                     sum += num;
-                    validateNumberIsNotOver(sum, num);
+                    validateNumberIsNotOver(sum);
                 } catch (NumberFormatException e) {
                     throw new IllegalArgumentException("하나의 숫자 혹은 합은 9,223,372,036,854,775,807 이하여야 합니다.");
                 }
@@ -38,8 +38,8 @@ public class Calculator {
         return Long.parseUnsignedLong(rawValue);
     }
 
-    private void validateNumberIsNotOver(long sum, long num) {
-        if (sum < 0 || num < 0) {
+    private void validateNumberIsNotOver(long num) {
+        if (num < 0) {
             throw new IllegalArgumentException("하나의 숫자 혹은 합은 9,223,372,036,854,775,807 이하여야 합니다.");
         }
     }
