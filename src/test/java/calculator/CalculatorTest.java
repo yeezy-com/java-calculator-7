@@ -51,14 +51,23 @@ public class CalculatorTest {
             .hasMessage("0은 입력할 수 없습니다.");
     }
 
-    @Test
-    void UnsignedLong타입내의_숫자는_계산할_수_있다() {
+    @ParameterizedTest
+    @MethodSource(value = "underUnsignedLong")
+    void UnsignedLong타입내의_숫자는_계산할_수_있다(final String input, final long expected) {
         final var calculator = new Calculator(new Splitter());
-        final var input = "10000000000:1";
 
         final var output = calculator.sum(input);
 
-        assertThat(output).isEqualTo(10000000001L);
+        assertThat(output).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> underUnsignedLong() {
+        return Stream.of(
+            Arguments.of("10000000000:1", 10000000001L),
+            Arguments.of("98765432103456:32141277234", 98_797_573_380_690L),
+            Arguments.of("10000000000312:41234124124", 10_041_234_124_436L),
+            Arguments.of("432145435984989323:214912749871", 432_145_650_897_739_194L)
+        );
     }
 
     @Test
