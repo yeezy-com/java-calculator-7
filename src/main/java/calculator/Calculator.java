@@ -25,7 +25,7 @@ public class Calculator {
         return sum;
     }
 
-    private long parseAddedNumber(String rawValue) {
+    private long parseAddedNumber(final String rawValue) {
         try {
             return parseUnsignedLongWithValidate(rawValue);
         } catch (NumberFormatException e) {
@@ -33,14 +33,14 @@ public class Calculator {
         }
     }
 
-    private long parseUnsignedLongWithValidate(String rawValue) {
+    private long parseUnsignedLongWithValidate(final String rawValue) {
         long num = Long.parseUnsignedLong(rawValue);
         validateNumberIsNotOver(num);
         validateIsPositiveNumber(num);
         return num;
     }
 
-    private void validateNumberIsNotOver(long num) {
+    private void validateNumberIsNotOver(final long num) {
         if (num < 0) {
             throw new IllegalArgumentException("하나의 숫자 혹은 합은 9,223,372,036,854,775,807 이하여야 합니다.");
         }

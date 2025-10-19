@@ -11,7 +11,7 @@ public class Splitter {
         return getArrayFrom(strings);
     }
 
-    private List<String> splitToDelimiter(String input) {
+    private List<String> splitToDelimiter(final String input) {
         List<String> strings = new ArrayList<>();
 
         String[] splittedInput = input.split(",");
@@ -23,38 +23,38 @@ public class Splitter {
         return strings;
     }
 
-    private void validateInputFormat(String input) {
+    private void validateInputFormat(final String input) {
         validateIsNotContinuousDelimiter(input);
         validateIsNotStartWithDelimiter(input);
         validateContainsDelimiter(input);
         validateOnlyUsingColonOrComma(input);
     }
 
-    private void validateIsNotContinuousDelimiter(String input) {
+    private void validateIsNotContinuousDelimiter(final String input) {
         if (input.matches(".*[^a-zA-Z0-9]{2,}.*")) {
             throw new IllegalArgumentException("구분자는 연속해서 올 수 없습니다.");
         }
     }
 
-    private void validateIsNotStartWithDelimiter(String input) {
+    private void validateIsNotStartWithDelimiter(final String input) {
         if (input.matches("^[^a-zA-Z0-9].*")) {
             throw new IllegalArgumentException("구분자로 시작할 수 없습니다.");
         }
     }
 
-    private void validateOnlyUsingColonOrComma(String input) {
+    private void validateOnlyUsingColonOrComma(final String input) {
         if (!input.matches("[0-9a-zA-Z,:]+")) {
             throw new IllegalArgumentException("쉼표(,)와 콜론(:)만 구분자로 사용할 수 있습니다.");
         }
     }
 
-    private void validateContainsDelimiter(String input) {
+    private void validateContainsDelimiter(final String input) {
         if (!(input.contains(",") || input.contains(":"))) {
             throw new IllegalArgumentException("문자열에 구분자가 포함되어야 합니다.");
         }
     }
 
-    private String[] getArrayFrom(List<String> strings) {
+    private String[] getArrayFrom(final List<String> strings) {
         String[] ans = new String[strings.size()];
         for (int i = 0; i < strings.size(); i++) {
             ans[i] = strings.get(i);
