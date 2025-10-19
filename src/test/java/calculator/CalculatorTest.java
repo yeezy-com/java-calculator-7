@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -48,5 +49,15 @@ public class CalculatorTest {
         assertThatThrownBy(() -> calculator.sum(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("0은 입력할 수 없습니다.");
+    }
+
+    @Test
+    void 숫자가_매우_클_수_있다() {
+        final var calculator = new Calculator(new Splitter());
+        final var input = "10000000000:1";
+
+        final var output = calculator.sum(input);
+
+        assertThat(output).isEqualTo(10000000001);
     }
 }
