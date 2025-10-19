@@ -29,7 +29,7 @@ public class Calculator {
         }
     }
 
-    private void validateIsPositiveNumber(long num) {
+    private void validateIsPositiveNumber(final long num) {
         if (num == 0) {
             throw new IllegalArgumentException("0은 입력할 수 없습니다.");
         }
