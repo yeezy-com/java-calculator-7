@@ -13,7 +13,7 @@ public class Calculator {
 
         String[] rawValues = splitter.split(input);
         for (String rawValue : rawValues) {
-            long num = parseToInt(rawValue);
+            long num = parseToUnsignedLong(rawValue);
             validateIsPositiveNumber(num);
             sum += num;
             validateNumberIsNotOver(sum, num);
@@ -22,7 +22,7 @@ public class Calculator {
         return sum;
     }
 
-    private long parseToInt(final String rawValue) {
+    private long parseToUnsignedLong(final String rawValue) {
         try {
             return Long.parseUnsignedLong(rawValue);
         } catch (IllegalArgumentException e) {
