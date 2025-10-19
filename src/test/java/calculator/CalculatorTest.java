@@ -64,10 +64,10 @@ public class CalculatorTest {
     @Test
     void UnsignedLong타입을_넘어서는_숫자는_예외가_발생한다() {
         final var calculator = new Calculator(new Splitter());
-        final var input = "4294967297:1";
+        final var input = "9223372036854775807:1";
 
         assertThatThrownBy(() -> calculator.sum(input))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("하나의 숫자 혹은 합은 4,294,967,295 이하여야 합니다.");
+            .hasMessage("하나의 숫자 혹은 합은 9,223,372,036,854,775,807 이하여야 합니다.");
     }
 }
