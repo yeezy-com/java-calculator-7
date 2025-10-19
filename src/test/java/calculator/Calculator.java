@@ -14,12 +14,9 @@ public class Calculator {
         String[] rawValues = splitter.split(input);
         for (String rawValue : rawValues) {
             long num = parseToInt(rawValue);
-            if (num < 0) {
-                throw new IllegalArgumentException("하나의 숫자 혹은 합은 9,223,372,036,854,775,807 이하여야 합니다.");
-            }
             validateIsPositiveNumber(num);
             sum += num;
-            if (sum < 0) {
+            if (sum < 0 || num < 0) {
                 throw new IllegalArgumentException("하나의 숫자 혹은 합은 9,223,372,036,854,775,807 이하여야 합니다.");
             }
         }
