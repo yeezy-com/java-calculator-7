@@ -15,9 +15,7 @@ public class Calculator {
         for (String rawValue : rawValues) {
             if (rawValue.matches("[0-9]+")) {
                 try {
-                    long num = Long.parseUnsignedLong(rawValue);
-                    validateNumberIsNotOver(num);
-                    validateIsPositiveNumber(num);
+                    long num = parseUnsignedLongWithValidate(rawValue);
                     sum += num;
                     validateNumberIsNotOver(sum);
                 } catch (NumberFormatException e) {
@@ -30,6 +28,13 @@ public class Calculator {
         }
 
         return sum;
+    }
+
+    private long parseUnsignedLongWithValidate(String rawValue) {
+        long num = Long.parseUnsignedLong(rawValue);
+        validateNumberIsNotOver(num);
+        validateIsPositiveNumber(num);
+        return num;
     }
 
     private void validateNumberIsNotOver(long num) {
