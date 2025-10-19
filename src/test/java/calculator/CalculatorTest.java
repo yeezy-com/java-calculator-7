@@ -58,6 +58,6 @@ public class CalculatorTest {
 
         final var output = calculator.sum(input);
 
-        assertThat(output).isEqualTo(10000000001);
+        assertThat(output).isEqualTo(10000000001L);
     }
 }

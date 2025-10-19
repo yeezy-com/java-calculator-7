@@ -8,12 +8,12 @@ public class Calculator {
         this.splitter = splitter;
     }
 
-    public int sum(final String input) {
-        int sum = 0;
+    public long sum(final String input) {
+        long sum = 0;
 
         String[] rawValues = splitter.split(input);
         for (String rawValue : rawValues) {
-            int num = parseToInt(rawValue);
+            long num = parseToInt(rawValue);
             validateIsPositiveNumber(num);
             sum += num;
         }
@@ -21,15 +21,15 @@ public class Calculator {
         return sum;
     }
 
-    private int parseToInt(final String rawValue) {
+    private long parseToInt(final String rawValue) {
         try {
-            return Integer.parseInt(rawValue);
+            return Long.parseLong(rawValue);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("구분자와 숫자로 이루어진 문자열이어야 합니다.");
         }
     }
 
-    private void validateIsPositiveNumber(int num) {
+    private void validateIsPositiveNumber(long num) {
         if (num == 0) {
             throw new IllegalArgumentException("0은 입력할 수 없습니다.");
         }
