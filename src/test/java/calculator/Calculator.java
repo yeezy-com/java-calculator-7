@@ -13,21 +13,29 @@ public class Calculator {
 
         String[] rawValues = splitter.split(input);
         for (String rawValue : rawValues) {
-            long num = parseToUnsignedLong(rawValue);
-            validateIsPositiveNumber(num);
-            sum += num;
-            validateNumberIsNotOver(sum, num);
+            if (rawValue.matches("[0-9]+")) {
+                try {
+                    long num = parseToUnsignedLong(rawValue);
+                    if (num < 0) {
+                        throw new IllegalArgumentException("하나의 숫자 혹은 합은 9,223,372,036,854,775,807 이하여야 합니다.");
+                    }
+                    validateIsPositiveNumber(num);
+                    sum += num;
+                    validateNumberIsNotOver(sum, num);
+                } catch (NumberFormatException e) {
+                    throw new IllegalArgumentException("하나의 숫자 혹은 합은 9,223,372,036,854,775,807 이하여야 합니다.");
+                }
+                continue;
+            }
+
+            throw new IllegalArgumentException("구분자와 숫자로 이루어진 문자열이어야 합니다.");
         }
 
         return sum;
     }
 
     private long parseToUnsignedLong(final String rawValue) {
-        try {
-            return Long.parseUnsignedLong(rawValue);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("구분자와 숫자로 이루어진 문자열이어야 합니다.");
-        }
+        return Long.parseUnsignedLong(rawValue);
     }
 
     private void validateNumberIsNotOver(long sum, long num) {
