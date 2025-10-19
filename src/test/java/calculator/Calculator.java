@@ -14,13 +14,8 @@ public class Calculator {
         String[] rawValues = splitter.split(input);
         for (String rawValue : rawValues) {
             if (rawValue.matches("[0-9]+")) {
-                try {
-                    long num = parseUnsignedLongWithValidate(rawValue);
-                    sum += num;
-                    validateNumberIsNotOver(sum);
-                } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("하나의 숫자 혹은 합은 9,223,372,036,854,775,807 이하여야 합니다.");
-                }
+                sum += parseAddedNumber(rawValue);
+                validateNumberIsNotOver(sum);
                 continue;
             }
 
@@ -28,6 +23,14 @@ public class Calculator {
         }
 
         return sum;
+    }
+
+    private long parseAddedNumber(String rawValue) {
+        try {
+            return parseUnsignedLongWithValidate(rawValue);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("하나의 숫자 혹은 합은 9,223,372,036,854,775,807 이하여야 합니다.");
+        }
     }
 
     private long parseUnsignedLongWithValidate(String rawValue) {
