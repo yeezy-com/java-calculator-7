@@ -23,7 +23,7 @@ public class Calculator {
 
     private long parseToInt(final String rawValue) {
         try {
-            return Long.parseLong(rawValue);
+            return Long.parseUnsignedLong(rawValue);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("구분자와 숫자로 이루어진 문자열이어야 합니다.");
         }
