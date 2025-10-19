@@ -52,7 +52,7 @@ public class CalculatorTest {
     }
 
     @Test
-    void 숫자가_매우_클_수_있다() {
+    void UnsignedLong타입내의_숫자는_계산할_수_있다() {
         final var calculator = new Calculator(new Splitter());
         final var input = "10000000000:1";
 
