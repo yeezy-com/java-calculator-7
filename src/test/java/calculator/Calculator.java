@@ -16,9 +16,7 @@ public class Calculator {
             if (rawValue.matches("[0-9]+")) {
                 try {
                     long num = parseToUnsignedLong(rawValue);
-                    if (num < 0) {
-                        throw new IllegalArgumentException("하나의 숫자 혹은 합은 9,223,372,036,854,775,807 이하여야 합니다.");
-                    }
+                    validateNumberIsNotOver(num);
                     validateIsPositiveNumber(num);
                     sum += num;
                     validateNumberIsNotOver(sum);
