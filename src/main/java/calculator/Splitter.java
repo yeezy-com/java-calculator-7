@@ -18,13 +18,15 @@ public class Splitter {
     private List<String> splitToDelimiter(final String input) {
         List<String> strings = new ArrayList<>();
 
-        String[] splittedInput = input.split(",");
+        String[] splittedInput = input.split(delimiters);
         for (String splittedPart : splittedInput) {
-            for (String part : splittedPart.split(":")) {
-                strings.add(part);
-            }
+            strings.add(splittedPart);
         }
         return strings;
+    }
+
+    public void addDelimiter(final String custom) {
+        delimiters += "|" + custom;
     }
 
     private void validateInputFormat(final String input) {
@@ -64,10 +66,6 @@ public class Splitter {
             ans[i] = strings.get(i);
         }
         return ans;
-    }
-
-    public void addDelimiter(final String custom) {
-        delimiters += "|" + custom;
     }
 
     private String extractCustomDelimiter(String input) {
