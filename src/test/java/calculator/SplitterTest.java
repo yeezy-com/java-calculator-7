@@ -3,6 +3,7 @@ package calculator;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -69,5 +70,16 @@ public class SplitterTest {
         assertThatThrownBy(() -> splitter.split(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("구분자는 연속해서 올 수 없습니다.");
+    }
+
+    @Test
+    void 커스텀_구분자를_등록할_수_있다() {
+        final var splitter = new Splitter();
+        final var custom = ";";
+
+        splitter.addDelimiter(custom);
+
+        assertThat(splitter).extracting("delimiters")
+            .isEqualTo(",|:|;");
     }
 }
