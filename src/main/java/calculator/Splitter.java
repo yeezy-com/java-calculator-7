@@ -2,6 +2,8 @@ package calculator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Splitter {
 
@@ -66,5 +68,14 @@ public class Splitter {
 
     public void addDelimiter(final String custom) {
         delimiters += "|" + custom;
+    }
+
+    private String extractCustomDelimiter(String input) {
+        Pattern pattern = Pattern.compile("//([^0-9])\\n");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return null;
     }
 }
