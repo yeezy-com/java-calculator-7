@@ -83,7 +83,7 @@ public class CalculatorTest {
     @Test
     void 커스텀_구분자를_지정할_수_있다() {
         final var calculator = new Calculator(new Splitter());
-        final var input = "//;\\n3;2:3";
+        final var input = "//;\n3;2:3";
 
         final var output = calculator.sum(input);
 
