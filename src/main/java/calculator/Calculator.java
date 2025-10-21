@@ -9,8 +9,9 @@ public class Calculator {
     }
 
     public long sum(final String input) {
-        if (input.startsWith("//")) {
-            return 8;
+        Integer x = extractCustomDelimiter(input);
+        if (x != null) {
+            return x;
         }
         long sum = 0;
 
@@ -26,6 +27,13 @@ public class Calculator {
         }
 
         return sum;
+    }
+
+    private Integer extractCustomDelimiter(String input) {
+        if (input.startsWith("//")) {
+            return 8;
+        }
+        return null;
     }
 
     private long parseAddedNumber(final String rawValue) {
