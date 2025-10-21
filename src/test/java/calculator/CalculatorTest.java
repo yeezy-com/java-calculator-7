@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -77,5 +78,16 @@ public class CalculatorTest {
         assertThatThrownBy(() -> calculator.sum(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("하나의 숫자 혹은 합은 9,223,372,036,854,775,807 이하여야 합니다.");
+    }
+
+    @Test
+    void 커스텀_구분자를_지정할_수_있다() {
+        final var calculator = new Calculator(new Splitter());
+        final var input = "//;\\n3;2:3";
+
+        final var output = calculator.sum(input);
+
+        final var expected = 8;
+        assertThat(output).isEqualTo(expected);
     }
 }
