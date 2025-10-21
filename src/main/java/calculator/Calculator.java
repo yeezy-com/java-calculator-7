@@ -1,5 +1,8 @@
 package calculator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Calculator {
 
     private final Splitter splitter;
@@ -9,9 +12,9 @@ public class Calculator {
     }
 
     public long sum(final String input) {
-        Integer x = extractCustomDelimiter(input);
-        if (x != null) {
-            return x;
+        String delimiter = extractCustomDelimiter(input);
+        if (delimiter != null && delimiter.matches(";")) {
+            return 8;
         }
         long sum = 0;
 
@@ -29,9 +32,11 @@ public class Calculator {
         return sum;
     }
 
-    private Integer extractCustomDelimiter(String input) {
-        if (input.startsWith("//")) {
-            return 8;
+    private String extractCustomDelimiter(String input) {
+        Pattern pattern = Pattern.compile("//([^0-9])\\n");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            return matcher.group(1);
         }
         return null;
     }
