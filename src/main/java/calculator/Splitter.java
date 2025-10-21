@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Splitter {
 
+    private String delimiters = ",|:";
+
     public String[] split(final String input) {
         validateInputFormat(input);
         List<String> strings = splitToDelimiter(input);
@@ -60,5 +62,9 @@ public class Splitter {
             ans[i] = strings.get(i);
         }
         return ans;
+    }
+
+    public void addDelimiter(final String custom) {
+        delimiters += "|" + custom;
     }
 }
