@@ -39,7 +39,8 @@ public class SplitterTest {
         final var splitter = new Splitter();
 
         assertThatThrownBy(() -> splitter.split(input))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("쉼표(,), 콜론(:), 커스텀 구분자 외에 구분자는 사용할 수 없습니다.");
     }
 
     @ParameterizedTest
