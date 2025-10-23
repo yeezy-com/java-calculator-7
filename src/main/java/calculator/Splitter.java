@@ -45,8 +45,8 @@ public class Splitter {
     private void validateInputFormat(final String input) {
         validateIsNotContinuousDelimiter(input);
         validateIsNotStartWithDelimiter(input);
-        validateContainsDelimiter(input);
         validateOnlyUsingDelimiters(input);
+        validateContainsDelimiter(input);
     }
 
     private void validateIsNotContinuousDelimiter(final String input) {
