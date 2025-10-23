@@ -89,9 +89,8 @@ public class SplitterTest {
         final var splitter = new Splitter();
         final var custom = "//;\n//.\n1;2.3";
 
-        String[] split = splitter.split(custom);
-
-        String[] expected = new String[]{"1", "2", "3"};
-        assertThat(split).isEqualTo(expected);
+        assertThatThrownBy(() -> splitter.split(custom))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("커스텀 구분자는 두 번 이상 등록할 수 없습니다.");
     }
 }
