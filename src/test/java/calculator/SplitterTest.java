@@ -83,4 +83,15 @@ public class SplitterTest {
         assertThat(splitter).extracting("delimiters")
             .isEqualTo(",:;");
     }
+
+    @Test
+    void 커스텀_구분자를_두개_이상_등록할_수_없다() {
+        final var splitter = new Splitter();
+        final var custom = "//;\n//.\n1;2.3";
+
+        String[] split = splitter.split(custom);
+
+        String[] expected = new String[]{"1", "2", "3"};
+        assertThat(split).isEqualTo(expected);
+    }
 }
