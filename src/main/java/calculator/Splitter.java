@@ -32,9 +32,7 @@ public class Splitter {
     private String extractRestInput(final String input, final String customDelimiter) {
         if (customDelimiter != null) {
             String[] split = input.split("\\n");
-            if (split.length <= 1) {
-                throw new IllegalArgumentException("커스텀 구분자만 입력할 수 없습니다.");
-            }
+            validateNotOnlyCustomDelimiter(split);
             String restInput = split[1];
             validateCustomDelimiterApplyOverTwice(restInput);
 
@@ -42,6 +40,12 @@ public class Splitter {
         }
 
         return input;
+    }
+
+    private void validateNotOnlyCustomDelimiter(String[] split) {
+        if (split.length <= 1) {
+            throw new IllegalArgumentException("커스텀 구분자만 입력할 수 없습니다.");
+        }
     }
 
     private void validateCustomDelimiterApplyOverTwice(String restInput) {
