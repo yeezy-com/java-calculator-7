@@ -32,7 +32,6 @@ public class Splitter {
     private String extractRestInput(final String input, final String customDelimiter) {
         if (customDelimiter != null) {
             validateDelimiterIsNotNumber(customDelimiter);
-
             String[] split = input.split("\\n");
             validateNotOnlyCustomDelimiter(split);
             String restInput = split[1];

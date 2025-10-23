@@ -104,12 +104,12 @@ public class SplitterTest {
             .hasMessage("커스텀 구분자만 입력할 수 없습니다.");
     }
 
-    @Test
-    void 커스텀_구분자는_숫자일_수_없다() {
+    @ParameterizedTest
+    @ValueSource(strings = {"//3\n", "//4\n", "//6\n"})
+    void 커스텀_구분자는_숫자일_수_없다(final String input) {
         final var splitter = new Splitter();
-        final var custom = "//3\n435";
 
-        assertThatThrownBy(() -> splitter.split(custom))
+        assertThatThrownBy(() -> splitter.split(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("커스텀 구분자는 숫자일 수 없습니다.");
     }
