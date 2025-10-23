@@ -35,7 +35,7 @@ public class SplitterTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1.3.2", "1.3:2", "1,3.2", "1-4:3"})
-    void 쉼표나_콜론이_아닌_구분자는_구분할_수_없다(final String input) {
+    void 쉼표나_콜론_그리고_커스텀구분자를_제외한_구분자는_사용할_수_없다(final String input) {
         final var splitter = new Splitter();
 
         assertThatThrownBy(() -> splitter.split(input))
