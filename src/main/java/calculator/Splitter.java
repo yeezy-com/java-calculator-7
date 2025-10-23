@@ -24,15 +24,18 @@ public class Splitter {
         if (customDelimiter != null) {
             String[] split = input.split("\\n");
             String restInput = split[1];
-
-            if (restInput.startsWith("//")) {
-                throw new IllegalArgumentException("커스텀 구분자는 두 번 이상 등록할 수 없습니다.");
-            }
+            validateCustomDelimiterApplyOverTwice(restInput);
 
             return restInput;
         }
 
         return input;
+    }
+
+    private void validateCustomDelimiterApplyOverTwice(String restInput) {
+        if (restInput.startsWith("//")) {
+            throw new IllegalArgumentException("커스텀 구분자는 두 번 이상 등록할 수 없습니다.");
+        }
     }
 
     private List<String> splitToDelimiter(final String input) {
