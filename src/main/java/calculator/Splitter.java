@@ -31,9 +31,7 @@ public class Splitter {
 
     private String extractRestInput(final String input, final String customDelimiter) {
         if (customDelimiter != null) {
-            if (customDelimiter.matches("[0-9]")) {
-                throw new IllegalArgumentException("커스텀 구분자는 숫자일 수 없습니다.");
-            }
+            validateDelimiterIsNotNumber(customDelimiter);
 
             String[] split = input.split("\\n");
             validateNotOnlyCustomDelimiter(split);
@@ -44,6 +42,12 @@ public class Splitter {
         }
 
         return input;
+    }
+
+    private void validateDelimiterIsNotNumber(String customDelimiter) {
+        if (customDelimiter.matches("[0-9]")) {
+            throw new IllegalArgumentException("커스텀 구분자는 숫자일 수 없습니다.");
+        }
     }
 
     private void validateNotOnlyCustomDelimiter(String[] split) {
