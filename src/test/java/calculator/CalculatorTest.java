@@ -27,7 +27,8 @@ public class CalculatorTest {
             Arguments.of("4:3:2", 9),
             Arguments.of("4,4,2,2", 12),
             Arguments.of("4,1", 5),
-            Arguments.of("1,2,3:4:5", 15)
+            Arguments.of("1,2,3:4:5", 15),
+            Arguments.of("1", 1)
         );
     }
 
