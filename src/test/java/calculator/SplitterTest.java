@@ -80,6 +80,6 @@ public class SplitterTest {
         splitter.addDelimiter(custom);
 
         assertThat(splitter).extracting("delimiters")
-            .isEqualTo(",|:|;");
+            .isEqualTo(",:;");
     }
 }

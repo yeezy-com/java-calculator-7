@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Splitter {
 
-    private String delimiters = ",|:";
+    private String delimiters = ",:";
 
     public String[] split(final String input) {
         validateInputFormat(input);
