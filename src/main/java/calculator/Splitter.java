@@ -32,6 +32,9 @@ public class Splitter {
     private String extractRestInput(final String input, final String customDelimiter) {
         if (customDelimiter != null) {
             String[] split = input.split("\\n");
+            if (split.length <= 1) {
+                throw new IllegalArgumentException();
+            }
             String restInput = split[1];
             validateCustomDelimiterApplyOverTwice(restInput);
 
