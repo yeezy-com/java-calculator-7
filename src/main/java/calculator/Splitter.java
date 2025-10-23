@@ -46,7 +46,7 @@ public class Splitter {
         validateIsNotContinuousDelimiter(input);
         validateIsNotStartWithDelimiter(input);
         validateContainsDelimiter(input);
-        validateOnlyUsingColonOrComma(input);
+        validateOnlyUsingDelimiters(input);
     }
 
     private void validateIsNotContinuousDelimiter(final String input) {
@@ -61,7 +61,7 @@ public class Splitter {
         }
     }
 
-    private void validateOnlyUsingColonOrComma(final String input) {
+    private void validateOnlyUsingDelimiters(final String input) {
         if (!input.matches("[0-9a-zA-Z" + delimiters + "]+")) {
             throw new IllegalArgumentException("쉼표(,), 콜론(:), 커스텀 구분자 외에 구분자는 사용할 수 없습니다.");
         }
