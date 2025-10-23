@@ -103,4 +103,14 @@ public class SplitterTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("커스텀 구분자만 입력할 수 없습니다.");
     }
+
+    @Test
+    void 커스텀_구분자는_숫자일_수_없다() {
+        final var splitter = new Splitter();
+        final var custom = "//3\n435";
+
+        assertThatThrownBy(() -> splitter.split(custom))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("커스텀 구분자는 숫자일 수 없습니다.");
+    }
 }
