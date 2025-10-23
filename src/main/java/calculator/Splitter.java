@@ -20,6 +20,15 @@ public class Splitter {
         return getArrayFrom(strings);
     }
 
+    private String extractCustomDelimiter(String input) {
+        Pattern pattern = Pattern.compile("//([^0-9])\\n");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return null;
+    }
+
     private String extractRestInput(final String input, final String customDelimiter) {
         if (customDelimiter != null) {
             String[] split = input.split("\\n");
@@ -73,12 +82,12 @@ public class Splitter {
             throw new IllegalArgumentException("구분자로 시작할 수 없습니다.");
         }
     }
-
     private void validateOnlyUsingDelimiters(final String input) {
         if (!input.matches("[0-9a-zA-Z" + delimiters + "]+")) {
             throw new IllegalArgumentException("쉼표(,), 콜론(:), 커스텀 구분자 외에 구분자는 사용할 수 없습니다.");
         }
     }
+
     private void validateContainsDelimiter(final String input) {
         Pattern pattern = Pattern.compile("[" + delimiters + "]");
         Matcher matcher = pattern.matcher(input);
@@ -93,14 +102,5 @@ public class Splitter {
             ans[i] = strings.get(i);
         }
         return ans;
-    }
-
-    private String extractCustomDelimiter(String input) {
-        Pattern pattern = Pattern.compile("//([^0-9])\\n");
-        Matcher matcher = pattern.matcher(input);
-        if (matcher.find()) {
-            return matcher.group(1);
-        }
-        return null;
     }
 }
