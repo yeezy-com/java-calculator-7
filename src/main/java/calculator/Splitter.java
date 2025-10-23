@@ -10,23 +10,36 @@ public class Splitter {
     private String delimiters = ",:";
 
     public String[] split(final String input) {
-        validateInputFormat(input);
-        List<String> strings = splitToDelimiter(input);
+        String customDelimiter = extractCustomDelimiter(input);
+        addDelimiter(customDelimiter);
+
+        String realInput = input;
+        if (customDelimiter != null) {
+            String[] split = input.split("\\n");
+            realInput = split[1];
+            System.out.println(realInput);
+        }
+
+        validateInputFormat(realInput);
+        List<String> strings = splitToDelimiter(realInput);
         return getArrayFrom(strings);
     }
 
     private List<String> splitToDelimiter(final String input) {
         List<String> strings = new ArrayList<>();
 
-        String[] splittedInput = input.split(delimiters);
+        String[] splittedInput = input.split("[" + delimiters + "]");
         for (String splittedPart : splittedInput) {
             strings.add(splittedPart);
         }
         return strings;
     }
 
-    public void addDelimiter(final String custom) {
-        delimiters += "|" + custom;
+    private void addDelimiter(final String custom) {
+        if (custom == null) {
+            return;
+        }
+        delimiters += custom;
     }
 
     private void validateInputFormat(final String input) {
@@ -49,13 +62,14 @@ public class Splitter {
     }
 
     private void validateOnlyUsingColonOrComma(final String input) {
-        if (!input.matches("[0-9a-zA-Z,:]+")) {
+        if (!input.matches("[0-9a-zA-Z" + delimiters + "]+")) {
             throw new IllegalArgumentException("쉼표(,)와 콜론(:)만 구분자로 사용할 수 있습니다.");
         }
     }
-
     private void validateContainsDelimiter(final String input) {
-        if (!(input.contains(",") || input.contains(":"))) {
+        Pattern pattern = Pattern.compile("[" + delimiters + "]");
+        Matcher matcher = pattern.matcher(input);
+        if (!matcher.find()) {
             throw new IllegalArgumentException("문자열에 구분자가 포함되어야 합니다.");
         }
     }

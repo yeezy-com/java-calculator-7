@@ -75,9 +75,9 @@ public class SplitterTest {
     @Test
     void 커스텀_구분자를_등록할_수_있다() {
         final var splitter = new Splitter();
-        final var custom = ";";
+        final var custom = "//;\n1;2;3";
 
-        splitter.addDelimiter(custom);
+        splitter.split(custom);
 
         assertThat(splitter).extracting("delimiters")
             .isEqualTo(",:;");
