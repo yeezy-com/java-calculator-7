@@ -21,7 +21,7 @@ public class Splitter {
     }
 
     private String extractCustomDelimiter(String input) {
-        Pattern pattern = Pattern.compile("//([^0-9])\\n");
+        Pattern pattern = Pattern.compile("//(.)\\n");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             return matcher.group(1);
@@ -31,6 +31,10 @@ public class Splitter {
 
     private String extractRestInput(final String input, final String customDelimiter) {
         if (customDelimiter != null) {
+            if (customDelimiter.matches("[0-9]")) {
+                throw new IllegalArgumentException("커스텀 구분자는 숫자일 수 없습니다.");
+            }
+
             String[] split = input.split("\\n");
             validateNotOnlyCustomDelimiter(split);
             String restInput = split[1];
