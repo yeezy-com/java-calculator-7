@@ -13,19 +13,26 @@ public class Splitter {
         String customDelimiter = extractCustomDelimiter(input);
         addDelimiter(customDelimiter);
 
-        String realInput = input;
-        if (customDelimiter != null) {
-            String[] split = input.split("\\n");
-            realInput = split[1];
-
-            if (realInput.startsWith("//")) {
-                return new String[]{"1", "2", "3"};
-            }
-        }
+        String realInput = extractRestInput(input, customDelimiter);
 
         validateInputFormat(realInput);
         List<String> strings = splitToDelimiter(realInput);
         return getArrayFrom(strings);
+    }
+
+    private String extractRestInput(final String input, final String customDelimiter) {
+        if (customDelimiter != null) {
+            String[] split = input.split("\\n");
+            String restInput = split[1];
+
+            if (restInput.startsWith("//")) {
+                throw new IllegalArgumentException("커스텀 구분자는 두 번 이상 등록할 수 없습니다.");
+            }
+
+            return restInput;
+        }
+
+        return input;
     }
 
     private List<String> splitToDelimiter(final String input) {
