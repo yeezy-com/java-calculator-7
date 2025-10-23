@@ -93,4 +93,13 @@ public class SplitterTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("커스텀 구분자는 두 번 이상 등록할 수 없습니다.");
     }
+
+    @Test
+    void 커스텀_구분자만_입력할_수_없다() {
+        final var splitter = new Splitter();
+        final var custom = "//;\n";
+
+        assertThatThrownBy(() -> splitter.split(custom))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }
