@@ -100,6 +100,7 @@ public class SplitterTest {
         final var custom = "//;\n";
 
         assertThatThrownBy(() -> splitter.split(custom))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("커스텀 구분자만 입력할 수 없습니다.");
     }
 }

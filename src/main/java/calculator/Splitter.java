@@ -33,7 +33,7 @@ public class Splitter {
         if (customDelimiter != null) {
             String[] split = input.split("\\n");
             if (split.length <= 1) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("커스텀 구분자만 입력할 수 없습니다.");
             }
             String restInput = split[1];
             validateCustomDelimiterApplyOverTwice(restInput);
