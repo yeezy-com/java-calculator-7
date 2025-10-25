@@ -9,6 +9,9 @@ public class Calculator {
     }
 
     public long sum(final String input) {
+        if (input.isBlank()) {
+            return 0;
+        }
         long sum = 0;
 
         String[] rawValues = splitter.split(input);
