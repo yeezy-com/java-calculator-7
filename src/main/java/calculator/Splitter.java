@@ -21,7 +21,7 @@ public class Splitter {
     }
 
     private String extractCustomDelimiter(String input) {
-        Pattern pattern = Pattern.compile("//(.)\\n");
+        Pattern pattern = Pattern.compile("//(.)(\\\\n|\\n)");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             return matcher.group(1);
@@ -32,7 +32,7 @@ public class Splitter {
     private String extractRestInput(final String input, final String customDelimiter) {
         if (customDelimiter != null) {
             validateDelimiterIsNotNumber(customDelimiter);
-            String[] split = input.split("\\n");
+            String[] split = input.split("\\\\n|\\n");
             validateNotOnlyCustomDelimiter(split);
             String restInput = split[1];
             validateCustomDelimiterApplyOverTwice(restInput);
