@@ -91,4 +91,15 @@ public class CalculatorTest {
         final var expected = 8;
         assertThat(output).isEqualTo(expected);
     }
+
+    @Test
+    void 아무_입력도_없으면_0을_반환한다() {
+        final var calculator = new Calculator(new Splitter());
+        final var input = "";
+
+        final var output = calculator.sum(input);
+
+        final var expected = 0;
+        assertThat(output).isEqualTo(expected);
+    }
 }
