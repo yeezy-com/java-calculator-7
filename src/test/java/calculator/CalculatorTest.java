@@ -81,15 +81,23 @@ public class CalculatorTest {
             .hasMessage("하나의 숫자 혹은 합은 9,223,372,036,854,775,807 이하여야 합니다.");
     }
 
-    @Test
-    void 커스텀_구분자를_지정할_수_있다() {
+    @ParameterizedTest
+    @MethodSource("customInput")
+    void 커스텀_구분자를_지정할_수_있다(final String input, final Long expected) {
         final var calculator = new Calculator(new Splitter());
-        final var input = "//;\n3;2:3";
 
         final var output = calculator.sum(input);
 
-        final var expected = 8;
         assertThat(output).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> customInput() {
+        return Stream.of(
+            Arguments.of("//;\n3;2:3", 8L),
+            Arguments.of("//.\n3.3.3", 9L),
+            Arguments.of("//c\n3c3c3", 9L),
+            Arguments.of("//`\n3`3`3", 9L)
+        );
     }
 
     @Test
